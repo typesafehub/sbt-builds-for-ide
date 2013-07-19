@@ -32,7 +32,7 @@
 deploy: [
   {
     uri="http://private-repo.typesafe.com/typesafe/ide-2.11",
-    credentials="/opt/jenkins/credentials.properties",
+    credentials="/home/jenkinsdbuild/dbuild-josh-credentials.properties",
     projects:["sbt-republish"]
   }
   ]
