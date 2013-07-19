@@ -33,7 +33,8 @@
 ],
 deploy: [
   {
-    uri="file:///tmp/repo-for-sbt-on-2.10.x/"
+    uri="http://private-repo.typesafe.com/typesafe/ide-2.10",
+    credentials="/opt/jenkins/credentials.properties",
     projects:["sbt-republish"]
   }
   ]
