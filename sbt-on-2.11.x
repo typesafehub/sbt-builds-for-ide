@@ -13,7 +13,7 @@
     }
   }, {
     name: "sbt",
-    uri: "git://github.com/sbt/sbt.git#0.13"
+    uri: "git://github.com/sbt/sbt.git#0.13.0"
     extra: {
       projects: ["compiler-interface",
                  "classpath","logging","io","control","classfile",
