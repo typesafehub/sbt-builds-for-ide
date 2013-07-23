@@ -24,7 +24,7 @@
     }
   }, {
     name:   "sbt-republish",
-    uri:    "http://github.com/typesafehub/sbt-republish.git#master",
+    uri:    "http://github.com/typesafehub/sbt-republish.git#wip/dbuild-test",
     set-version: "0.13.0-on-2.10.x-for-IDE-SNAPSHOT"
   }, {
     name:   "zinc",
