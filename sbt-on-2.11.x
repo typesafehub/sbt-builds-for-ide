@@ -25,7 +25,7 @@
     }
   }, {
     name: "sbt-republish",
-    uri: "http://github.com/typesafehub/sbt-republish.git#wip/dbuild-test",
+    uri: "http://github.com/typesafehub/sbt-republish.git#master",
     set-version: "0.13.0-on-2.11.0-SNAPSHOT-for-IDE-SNAPSHOT" // This is the version you want to depend on.
   }
 ],
