@@ -5,18 +5,22 @@
         name:  "scala-lib",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-library;2.10.3-SNAPSHOT"
+        set-version: "2.10.3-SNAPSHOT"
       }, {
         name:  "scala-compiler",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-compiler;2.10.3-SNAPSHOT"
+        set-version: "2.10.3-SNAPSHOT"
       }, {
         name:  "scala-actors",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-actors;2.10.3-SNAPSHOT"
+        set-version: "2.10.3-SNAPSHOT"
       }, {
         name:  "scala-reflect",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-reflect;2.10.3-SNAPSHOT"
+        set-version: "2.10.3-SNAPSHOT"
       }, {
         name:   "scalacheck",
         system: "ivy",

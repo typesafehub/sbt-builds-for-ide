@@ -5,26 +5,32 @@
         name:  "scala-lib",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-library;2.11.0-SNAPSHOT"
+       set-version: "2.11.0-SNAPSHOT"
       }, {
         name:  "scala-compiler",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-compiler;2.11.0-SNAPSHOT"
+        set-version: "2.11.0-SNAPSHOT"
       }, {
         name:  "scala-actors",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-actors;2.11.0-SNAPSHOT"
+       set-version: "2.11.0-SNAPSHOT"
       }, {
         name:  "scala-reflect",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-reflect;2.11.0-SNAPSHOT"
+        set-version: "2.11.0-SNAPSHOT"
       }, {
         name:  "scala-xml",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-xml;2.11.0-M4"
+        set-version: "2.11.0-SNAPSHOT"
       }, {
         name:  "scala-parser-combinators",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-parser-combinators;2.11.0-M4"
+        set-version: "2.11.0-SNAPSHOT"
       }, {
         name:   "sbinary",
         uri:    "git://github.com/harrah/sbinary.git"
