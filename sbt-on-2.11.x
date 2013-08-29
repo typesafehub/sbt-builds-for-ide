@@ -1,36 +1,47 @@
+// External variables (expected to be set as environment variables before calling dbuild)
+// NOTE: There are no defaults.
+//
+// SCALA_VERSION
+// PUBLISH_REPO
+//
+// TODO:
+//   SCALA_BINARY_VERSION
+//   SCALA_XML_VERSION
+//   SCALA_COMBINATORS_VERSION
+
 {
   build: {
     "projects":[
       {
         name:  "scala-lib",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-library;2.11.0-SNAPSHOT"
-       set-version: "2.11.0-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-library;"${SCALA_VERSION}
+        set-version: ${SCALA_VERSION}
       }, {
         name:  "scala-compiler",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-compiler;2.11.0-SNAPSHOT"
-        set-version: "2.11.0-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-compiler;"${SCALA_VERSION}
+        set-version: ${SCALA_VERSION}
       }, {
         name:  "scala-actors",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-actors;2.11.0-SNAPSHOT"
-       set-version: "2.11.0-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-actors;"${SCALA_VERSION}
+        set-version: ${SCALA_VERSION}
       }, {
         name:  "scala-reflect",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-reflect;2.11.0-SNAPSHOT"
-        set-version: "2.11.0-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-reflect;"${SCALA_VERSION}
+        set-version: ${SCALA_VERSION}
       }, {
         name:  "scala-xml",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-xml;2.11.0-M4"
-        set-version: "2.11.0-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-xml;"${SCALA_VERSION}
+        set-version: ${SCALA_VERSION}
       }, {
         name:  "scala-parser-combinators",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-parser-combinators;2.11.0-M4"
-        set-version: "2.11.0-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-parser-combinators;"${SCALA_VERSION}
+        set-version: ${SCALA_VERSION}
       }, {
         name:   "sbinary",
         uri:    "git://github.com/harrah/sbinary.git"
@@ -53,7 +64,7 @@
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0-on-2.11.0-SNAPSHOT-for-IDE-SNAPSHOT"
+        set-version: "0.13.0-on-"${SCALA_VERSION}"-for-IDE-SNAPSHOT"
       }, {
         name:   "zinc",
         uri:    "https://github.com/typesafehub/zinc.git"
@@ -65,6 +76,7 @@
     deploy: [
       {
         uri="http://private-repo.typesafe.com/typesafe/ide-2.11",
+        uri=${?PUBLISH_REPO},
         credentials="/home/jenkinsdbuild/dbuild-josh-credentials.properties",
         projects:["sbt-republish"]
       }
