@@ -1,26 +1,33 @@
 {
+  // Variables that may be external.  We have the defaults here.
+  globals: {
+    scala-version: "2.10.3-SNAPSHOT"
+    scala-version: ${?SCALA_VERSION}
+    publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.10"
+    publish-repo: ${?PUBLISH_REPO}
+  }
   build: {
     "projects":[
       {
         name:  "scala-lib",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-library;2.10.3-SNAPSHOT"
-        set-version: "2.10.3-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-library;"${globals.scala-version}
+        set-version: ${globals.scala-version}
       }, {
         name:  "scala-compiler",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-compiler;2.10.3-SNAPSHOT"
-        set-version: "2.10.3-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-compiler;"${globals.scala-version}
+        set-version: ${globals.scala-version}
       }, {
         name:  "scala-actors",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-actors;2.10.3-SNAPSHOT"
-        set-version: "2.10.3-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-actors;"${globals.scala-version}
+        set-version: ${globals.scala-version}
       }, {
         name:  "scala-reflect",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-reflect;2.10.3-SNAPSHOT"
-        set-version: "2.10.3-SNAPSHOT"
+        uri:    "ivy:org.scala-lang#scala-reflect;"${globals.scala-version}
+        set-version: ${globals.scala-version}
       }, {
         name:   "scalacheck",
         system: "ivy",
@@ -43,7 +50,7 @@
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0-on-2.10.3-SNAPSHOT-for-IDE-SNAPSHOT"
+        set-version: "0.13.0-on-"${globals.scala-version}"-for-IDE-SNAPSHOT"
       }, {
         name:   "zinc",
         uri:    "https://github.com/typesafehub/zinc.git"
@@ -54,7 +61,7 @@
   options: {
     deploy: [
       {
-        uri="http://private-repo.typesafe.com/typesafe/ide-2.10",
+        uri=${?globals.publish-repo},
         credentials="/home/jenkinsdbuild/dbuild-josh-credentials.properties",
         projects:["sbt-republish"]
       }
