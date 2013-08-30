@@ -3,6 +3,7 @@
 SCRIPT_DIR=$(dirname $0)
 
 java \
+  -Dmaven.local.repo=$LOCAL_M2_REPO \
   -Dsbt.boot.properties=$SCRIPT_DIR/dbuild.properties \
   -jar $SCRIPT_DIR/sbt-launch.jar \
   $@
