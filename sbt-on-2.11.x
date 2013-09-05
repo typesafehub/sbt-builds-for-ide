@@ -29,16 +29,6 @@
         uri:    "ivy:org.scala-lang#scala-reflect;"${globals.scala-version}
         set-version: ${globals.scala-version}
       }, {
-        name:  "scala-xml",
-        system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-xml;2.11.0-M4"
-        set-version: ${globals.scala-version}
-      }, {
-        name:  "scala-parser-combinators",
-        system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-parser-combinators;2.11.0-M4"
-        set-version: ${globals.scala-version}
-      }, {
         name:   "sbinary",
         uri:    "git://github.com/harrah/sbinary.git"
         extra: {
