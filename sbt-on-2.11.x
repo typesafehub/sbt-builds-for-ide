@@ -30,14 +30,14 @@
         set-version: ${globals.scala-version}
       }, {
         name:   "sbinary",
-        uri:    "git://github.com/harrah/sbinary.git"
+        uri:    "git://github.com/harrah/sbinary.git#2.11"
         extra: {
           projects: ["core"],
           run-tests: false // Sbinary has some invalid case classes currently.
         }
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#0.13.0"
+        uri:    "git://github.com/sbt/sbt.git#0.13-2.11"
         extra: {
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
