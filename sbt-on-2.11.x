@@ -3,6 +3,8 @@
   globals: {
     scala-version: "2.11.0-SNAPSHOT"
     scala-version: ${?SCALA_VERSION}
+    scala-binary-version: "2.11.0-M4"
+    scala-binary-version: ${?SCALA_BINARY_VERSION}
     publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.11"
     publish-repo: ${?PUBLISH_REPO}
   }
@@ -33,7 +35,10 @@
         uri:    "git://github.com/harrah/sbinary.git#2.11"
         extra: {
           projects: ["core"],
-          run-tests: false // Sbinary has some invalid case classes currently.
+          run-tests: false, // Sbinary has some invalid case classes currently.
+          commands: [
+            "set (libraryDependencies in core) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }"
+          ]  
         }
       }, {
         name:   "sbt",
@@ -45,7 +50,12 @@
                      "compiler-integration","incremental-compiler","compile","launcher-interface"
                     ],
           run-tests: false,
-          commands: [ "set every Util.includeTestDependencies := false" ] // Without this, we have to build specs2
+          commands: [ "set every Util.includeTestDependencies := false", // Without this, we have to build specs2
+                      "set (libraryDependencies in cacheSub           ) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }",
+                      "set (libraryDependencies in compilePersistSub  ) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }",
+                      "set (libraryDependencies in mainSub            ) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }",
+                      "set (libraryDependencies in processSub         ) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }"
+                    ]
         }
       }, {
         name:   "sbt-republish",
