@@ -14,28 +14,31 @@
         name:  "scala-xml",
         system: "ivy",
         uri:    "ivy:org.scala-lang.modules#scala-xml_2.11.0-M4;1.0-RC3"
-        set-version: "1.0-RC3",
-        extra: {
-          excludes: [{
-            organization: "org.scala-lang",
-            name: "scala-library"
-          }]
-        }
+        set-version: "1.0-RC3"
       }, {
         name:  "scala-parser-combinators",
         system: "ivy",
-        uri:    "ivy:org.scala-lang.modules#scala-parser-combinators_2.11.0-M4;1.0-RC1"
-        set-version: "1.0-RC1",
-        extra: {
-          excludes: [{
-            organization: "org.scala-lang",
-            name: "scala-library"
-          }]
-        }
+        uri:    "ivy:org.scala-lang.modules#scala-parser-combinators_2.11.0-M4;1.0-RC1",
+        set-version: "1.0-RC1"
       }, {
-        name:  "scala",
-        system: "scala", 
-        uri:    "git://github.com/jsuereth/scala.git#wip/modularize-xml-parsres", //adriaanm:modularize-xml-parsers
+        name:  "scala-lib",
+        system: "ivy",
+        set-version: ${globals.scala-version}
+        uri:    "ivy:org.scala-lang#scala-library;"${globals.scala-version}
+      }, {
+        name:  "scala-compiler",
+        system: "ivy",
+        set-version: ${globals.scala-version}
+        uri:    "ivy:org.scala-lang#scala-compiler;"${globals.scala-version}
+      }, {
+        name:  "scala-actors",
+        system: "ivy",
+        uri:    "ivy:org.scala-lang#scala-actors;"${globals.scala-version}
+        set-version: ${globals.scala-version}
+      }, {
+        name:  "scala-reflect",
+        system: "ivy",
+        uri:    "ivy:org.scala-lang#scala-reflect;"${globals.scala-version}
         set-version: ${globals.scala-version}
       }, {
         name:   "sbinary",
