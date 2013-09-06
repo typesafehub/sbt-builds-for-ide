@@ -11,34 +11,38 @@
   build: {
     "projects":[
       {
-        name:  "scala-lib",
+        name:  "scala-xml",
         system: "ivy",
-        set-version: ${globals.scala-version}
-        uri:    "ivy:org.scala-lang#scala-library;"${globals.scala-version}
+        uri:    "ivy:org.scala-lang.modules#scala-xml_2.11.0-M4;1.0-RC3"
+        set-version: "1.0-RC3",
+        extra: {
+          excludes: [{
+            organization: "org.scala-lang",
+            name: "scala-library"
+          }]
+        }
       }, {
-        name:  "scala-compiler",
+        name:  "scala-parser-combinators",
         system: "ivy",
-        set-version: ${globals.scala-version}
-        uri:    "ivy:org.scala-lang#scala-compiler;"${globals.scala-version}
+        uri:    "ivy:org.scala-lang.modules#scala-parser-combinators_2.11.0-M4;1.0-RC1"
+        set-version: "1.0-RC1",
+        extra: {
+          excludes: [{
+            organization: "org.scala-lang",
+            name: "scala-library"
+          }]
+        }
       }, {
-        name:  "scala-actors",
-        system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-actors;"${globals.scala-version}
-        set-version: ${globals.scala-version}
-      }, {
-        name:  "scala-reflect",
-        system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-reflect;"${globals.scala-version}
+        name:  "scala",
+        system: "scala", 
+        uri:    "git://github.com/jsuereth/scala.git#wip/modularize-xml-parsres", //adriaanm:modularize-xml-parsers
         set-version: ${globals.scala-version}
       }, {
         name:   "sbinary",
         uri:    "git://github.com/harrah/sbinary.git#2.11"
         extra: {
           projects: ["core"],
-          run-tests: false, // Sbinary has some invalid case classes currently.
-          commands: [
-            "set (libraryDependencies in core) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }"
-          ]  
+          run-tests: false // Sbinary has some invalid case classes currently.
         }
       }, {
         name:   "sbt",
@@ -50,11 +54,7 @@
                      "compiler-integration","incremental-compiler","compile","launcher-interface"
                     ],
           run-tests: false,
-          commands: [ "set every Util.includeTestDependencies := false", // Without this, we have to build specs2
-                      "set (libraryDependencies in cacheSub           ) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }",
-                      "set (libraryDependencies in compilePersistSub  ) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }",
-                      "set (libraryDependencies in mainSub            ) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }",
-                      "set (libraryDependencies in processSub         ) ~= { ld => ld map { case dep if (dep.organization == \"org.scala-lang.modules\") => dep cross CrossVersion.fullMapped(_ => \""${globals.scala-binary-version}"\") case dep => dep } }"
+          commands: [ "set every Util.includeTestDependencies := false" // Without this, we have to build specs2
                     ]
         }
       }, {
