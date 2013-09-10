@@ -1,12 +1,13 @@
 {
   // Variables that may be external.  We have the defaults here.
   globals: {
-    scala-version: "2.11.0-SNAPSHOT"
+    scala-version: "2.11.0-M5"
     scala-version: ${?SCALA_VERSION}
     scala-binary-version: "2.11.0-M4"
     scala-binary-version: ${?SCALA_BINARY_VERSION}
     publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.11"
     publish-repo: ${?PUBLISH_REPO}
+    release-version: "0.13.0-on-2.11.0-M5-for-IDE"
   }
   build: {
     "projects":[
@@ -42,14 +43,14 @@
         set-version: ${globals.scala-version}
       }, {
         name:   "sbinary",
-        uri:    "git://github.com/harrah/sbinary.git#2.11"
+        uri:    "git://github.com/harrah/sbinary.git#v0.4.2-on-scala-2.11.0-M5"
         extra: {
           projects: ["core"],
           run-tests: false // Sbinary has some invalid case classes currently.
         }
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#0.13-2.11"
+        uri:    "git://github.com/sbt/sbt.git#v0.13.0-for-scala-2.11.0-M5"
         extra: {
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
@@ -62,8 +63,8 @@
         }
       }, {
         name:   "sbt-republish",
-        uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0-on-"${globals.scala-version}"-for-IDE-SNAPSHOT"
+        uri:    "http://github.com/typesafehub/sbt-republish.git#v0.13.0-for-scala-2.11.0-M5",
+        set-version: ${globals.release-version}
       }, {
         name:   "zinc",
         uri:    "https://github.com/typesafehub/zinc.git"
