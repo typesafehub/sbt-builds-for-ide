@@ -45,7 +45,8 @@
                      "process","relation","interface","persist","api",
                      "compiler-integration","incremental-compiler","compile","launcher-interface"
                     ],
-          run-tests: false
+          run-tests: false,
+          sbt-version: "0.13.0"
         }
       }, {
         name:   "sbt-republish",
