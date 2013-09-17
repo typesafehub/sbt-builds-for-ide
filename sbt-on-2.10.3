@@ -1,12 +1,12 @@
 {
   // Variables that may be external.  We have the defaults here.
   globals: {
-    scala-version: "2.10.3-SNAPSHOT"
+    scala-version: "2.10.3-RC2"
     scala-version: ${?SCALA_VERSION}
     publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.10"
     publish-repo: ${?PUBLISH_REPO}
   }
-  build: {
+   build: {
     "projects":[
       {
         name:  "scala-lib",
@@ -45,7 +45,8 @@
                      "process","relation","interface","persist","api",
                      "compiler-integration","incremental-compiler","compile","launcher-interface"
                     ],
-          run-tests: false
+          run-tests: false,
+          sbt-version: "0.12.4"
         }
       }, {
         name:   "sbt-republish",
