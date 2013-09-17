@@ -80,11 +80,15 @@
       }
     ]
     notifications: {
-      send:{
+      send:[{
         projects: "."
         send.to: "qbranch@typesafe.com"
         when: bad
-      }
+      },{ 
+        projects: "."
+        kind: console
+        when: always
+      }]
       default.send: {
         from: "jenkins-dbuild <antonio.cunei@typesafe.com>"
         smtp:{
