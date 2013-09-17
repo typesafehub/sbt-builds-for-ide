@@ -66,5 +66,19 @@
         projects:["sbt-republish"]
       }
     ]
+    notifications: {
+      send:{
+        projects: "."
+        send.to: "qbranch@typesafe.com"
+        when: bad
+      }
+      default.send: {
+        from: "jenkins-dbuild <antonio.cunei@typesafe.com>"
+        smtp:{
+          server: "psemail.epfl.ch"
+          encryption: none
+        }
+      }
+    }
   }
 }
