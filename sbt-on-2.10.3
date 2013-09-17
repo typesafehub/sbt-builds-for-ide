@@ -1,0 +1,71 @@
+{
+  // Variables that may be external.  We have the defaults here.
+  globals: {
+    scala-version: "2.10.3-RC2"
+    scala-version: ${?SCALA_VERSION}
+    publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.10"
+    publish-repo: ${?PUBLISH_REPO}
+  }
+   build: {
+    "projects":[
+      {
+        name:  "scala-lib",
+        system: "ivy",
+        uri:    "ivy:org.scala-lang#scala-library;"${globals.scala-version}
+        set-version: ${globals.scala-version}
+      }, {
+        name:  "scala-compiler",
+        system: "ivy",
+        uri:    "ivy:org.scala-lang#scala-compiler;"${globals.scala-version}
+        set-version: ${globals.scala-version}
+      }, {
+        name:  "scala-actors",
+        system: "ivy",
+        uri:    "ivy:org.scala-lang#scala-actors;"${globals.scala-version}
+        set-version: ${globals.scala-version}
+      }, {
+        name:  "scala-reflect",
+        system: "ivy",
+        uri:    "ivy:org.scala-lang#scala-reflect;"${globals.scala-version}
+        set-version: ${globals.scala-version}
+      }, {
+        name:   "scalacheck",
+        system: "ivy",
+        uri:    "ivy:org.scalacheck#scalacheck_2.10;1.10.1"
+      }, {
+        name:   "sbinary",
+        uri:    "git://github.com/harrah/sbinary.git#v0.4.2"
+        extra: { projects: ["core"] }
+      }, {
+        name:   "sbt",
+        uri:    "git://github.com/sbt/sbt.git#v0.13.0"
+        extra: {
+          projects: ["compiler-interface",
+                     "classpath","logging","io","control","classfile",
+                     "process","relation","interface","persist","api",
+                     "compiler-integration","incremental-compiler","compile","launcher-interface"
+                    ],
+          run-tests: false,
+          sbt-version: "0.12.4"
+        }
+      }, {
+        name:   "sbt-republish",
+        uri:    "http://github.com/typesafehub/sbt-republish.git#v0.13.0-for-scala-2.10.3-RC2",
+        set-version: "0.13.0-on-"${globals.scala-version}"-for-IDE"
+      }, {
+        name:   "zinc",
+        uri:    "https://github.com/typesafehub/zinc.git"
+      }
+    ],
+    options:{cross-version:standard},
+  }
+  options: {
+    deploy: [
+      {
+        uri=${?globals.publish-repo},
+        credentials="/home/jenkinsdbuild/dbuild-josh-credentials.properties",
+        projects:["sbt-republish"]
+      }
+    ]
+  }
+}
