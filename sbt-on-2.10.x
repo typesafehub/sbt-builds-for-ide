@@ -1,7 +1,7 @@
 {
   // Variables that may be external.  We have the defaults here.
   globals: {
-    scala-version: "2.10.3-SNAPSHOT"
+    scala-version: "2.10.4-SNAPSHOT"
     scala-version: ${?SCALA_VERSION}
     publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.10"
     publish-repo: ${?PUBLISH_REPO}
