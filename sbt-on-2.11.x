@@ -3,8 +3,12 @@
   globals: {
     scala-version: "2.11.0-SNAPSHOT"
     scala-version: ${?SCALA_VERSION}
-    scala-binary-version: "2.11.0-M4"
+    scala-binary-version: "2.11.0-M5"
     scala-binary-version: ${?SCALA_BINARY_VERSION}
+    parser-combinator-version: "1.0.0-RC3"
+    parser-combinator-version: ${?SCALA_PARSER_COMBINATOR_VERSION}
+    xml-version: "1.0.0-RC5"
+    xml-version: ${?SCALA_XML_VERSION}
     publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.11"
     publish-repo: ${?PUBLISH_REPO}
   }
@@ -13,12 +17,12 @@
       {
         name:  "scala-xml",
         system: "ivy",
-        uri:    "ivy:org.scala-lang.modules#scala-xml_2.11.0-M4;1.0-RC3"
+        uri:    "ivy:org.scala-lang.modules#scala-xml_"${globals.scala-binary-version}";"${globals.xml-version}
         set-version: "1.0-RC3"
       }, {
         name:  "scala-parser-combinators",
         system: "ivy",
-        uri:    "ivy:org.scala-lang.modules#scala-parser-combinators_2.11.0-M4;1.0-RC1",
+        uri:    "ivy:org.scala-lang.modules#scala-parser-combinators_"${globals.scala-binary-version}";"${globals.parser-combinator-version},
         set-version: "1.0-RC1"
       }, {
         name:  "scala-lib",
