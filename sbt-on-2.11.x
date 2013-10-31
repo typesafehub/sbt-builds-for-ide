@@ -1,6 +1,6 @@
 {
   // Variables that may be external.  We have the defaults here.
-  globals: {
+  vars: {
     scala-version: "2.11.0-SNAPSHOT"
     scala-version: ${?SCALA_VERSION}
     scala-binary-version: "2.11.0-M5"
@@ -17,33 +17,33 @@
       {
         name:  "scala-xml",
         system: "ivy",
-        uri:    "ivy:org.scala-lang.modules#scala-xml_"${globals.scala-binary-version}";"${globals.xml-version}
+        uri:    "ivy:org.scala-lang.modules#scala-xml_"${vars.scala-binary-version}";"${vars.xml-version}
         set-version: "1.0-RC3"
       }, {
         name:  "scala-parser-combinators",
         system: "ivy",
-        uri:    "ivy:org.scala-lang.modules#scala-parser-combinators_"${globals.scala-binary-version}";"${globals.parser-combinator-version},
+        uri:    "ivy:org.scala-lang.modules#scala-parser-combinators_"${vars.scala-binary-version}";"${vars.parser-combinator-version},
         set-version: "1.0-RC1"
       }, {
         name:  "scala-lib",
         system: "ivy",
-        set-version: ${globals.scala-version}
-        uri:    "ivy:org.scala-lang#scala-library;"${globals.scala-version}
+        set-version: ${vars.scala-version}
+        uri:    "ivy:org.scala-lang#scala-library;"${vars.scala-version}
       }, {
         name:  "scala-compiler",
         system: "ivy",
-        set-version: ${globals.scala-version}
-        uri:    "ivy:org.scala-lang#scala-compiler;"${globals.scala-version}
+        set-version: ${vars.scala-version}
+        uri:    "ivy:org.scala-lang#scala-compiler;"${vars.scala-version}
       }, {
         name:  "scala-actors",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-actors;"${globals.scala-version}
-        set-version: ${globals.scala-version}
+        uri:    "ivy:org.scala-lang#scala-actors;"${vars.scala-version}
+        set-version: ${vars.scala-version}
       }, {
         name:  "scala-reflect",
         system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-reflect;"${globals.scala-version}
-        set-version: ${globals.scala-version}
+        uri:    "ivy:org.scala-lang#scala-reflect;"${vars.scala-version}
+        set-version: ${vars.scala-version}
       }, {
         name:   "sbinary",
         uri:    "git://github.com/harrah/sbinary.git#2.11"
@@ -67,7 +67,7 @@
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0-on-"${globals.scala-version}"-for-IDE-SNAPSHOT"
+        set-version: "0.13.0-on-"${vars.scala-version}"-for-IDE-SNAPSHOT"
       }, {
         name:   "zinc",
         uri:    "https://github.com/typesafehub/zinc.git#v0.3.0"
@@ -78,7 +78,7 @@
   options: {
     deploy: [
       {
-        uri=${?globals.publish-repo},
+        uri=${?vars.publish-repo},
         credentials="/home/jenkinsdbuild/dbuild-josh-credentials.properties",
         projects:["sbt-republish"]
       }
