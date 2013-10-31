@@ -1,12 +1,12 @@
 {
   // Variables that may be external.  We have the defaults here.
   globals: {
-    scala-version: "2.10.2"
+    scala-version: "2.10.4-SNAPSHOT"
     scala-version: ${?SCALA_VERSION}
     publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.10"
     publish-repo: ${?PUBLISH_REPO}
   }
-   build: {
+  build: {
     "projects":[
       {
         name:  "scala-lib",
@@ -34,19 +34,18 @@
         uri:    "ivy:org.scalacheck#scalacheck_2.10;1.10.1"
       }, {
         name:   "sbinary",
-        uri:    "git://github.com/harrah/sbinary.git"
+        uri:    "git://github.com/harrah/sbinary.git#v0.4.2"
         extra: { projects: ["core"] }
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#0.13.0"
+        uri:    "git://github.com/sbt/sbt.git#v0.13"
         extra: {
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
                      "process","relation","interface","persist","api",
                      "compiler-integration","incremental-compiler","compile","launcher-interface"
                     ],
-          run-tests: false,
-          sbt-version: "0.13.0"
+          run-tests: false
         }
       }, {
         name:   "sbt-republish",
@@ -54,7 +53,7 @@
         set-version: "0.13.0-on-"${globals.scala-version}"-for-IDE-SNAPSHOT"
       }, {
         name:   "zinc",
-        uri:    "https://github.com/typesafehub/zinc.git#v0.3.0"
+        uri:    "https://github.com/typesafehub/zinc.git"
       }
     ],
     options:{cross-version:standard},
@@ -72,7 +71,7 @@
         projects: "."
         send.to: "qbranch@typesafe.com"
         when: bad
-      },{
+      },{ 
         projects: "."
         kind: console
         when: always

@@ -70,7 +70,7 @@
         set-version: "0.13.0-on-"${globals.scala-version}"-for-IDE-SNAPSHOT"
       }, {
         name:   "zinc",
-        uri:    "https://github.com/typesafehub/zinc.git"
+        uri:    "https://github.com/typesafehub/zinc.git#v0.3.0"
       }
     ],
     options:{cross-version:standard},
