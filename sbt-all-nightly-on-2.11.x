@@ -54,7 +54,6 @@
       }, {
         name:   "sbt",
         uri:    "git://github.com/sbt/sbt.git#0.13"
-        sbt-version: "0.13.0",
         extra: {
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
@@ -62,6 +61,7 @@
                      "compiler-integration","incremental-compiler","compile","launcher-interface"
                     ],
           run-tests: false,
+          sbt-version: "0.13.0",
           commands: [ "set every Util.includeTestDependencies := false" // Without this, we have to build specs2
                     ]
         }
