@@ -35,11 +35,6 @@
         set-version: ${vars.scala-version}
         uri:    "ivy:org.scala-lang#scala-compiler;"${vars.scala-version}
       }, {
-        name:  "scala-actors",
-        system: "ivy",
-        uri:    "ivy:org.scala-lang#scala-actors;"${vars.scala-version}
-        set-version: ${vars.scala-version}
-      }, {
         name:  "scala-reflect",
         system: "ivy",
         uri:    "ivy:org.scala-lang#scala-reflect;"${vars.scala-version}
