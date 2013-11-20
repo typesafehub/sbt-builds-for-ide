@@ -61,6 +61,7 @@
         extra: {
           projects: ["core"],
           run-tests: false // Sbinary has some invalid case classes currently.
+          sbt-version: "0.13.0"
         }
       }, {
         name:   "sbt",
