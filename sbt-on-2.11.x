@@ -4,12 +4,16 @@
   vars: {
     publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.11"
     publish-repo: ${?PUBLISH_REPO}
+    sbt.version.suffix: "-for-IDE"
+    sbt.branch.prefix: ""
+    zinc.gitref: "v0.3.0"
   }
   build: {
     "projects":[
       {
         system: assemble
         name:   scala2
+        deps.ignore: "org.scalacheck#scalacheck"
         extra.parts.options: {
           cross-version: standard
           sbt-version: "0.13.0"
@@ -31,17 +35,6 @@
             set-version: ${vars.maven.version.number}
             uri:    "ivy:org.scala-lang#scala-compiler;"${vars.maven.version.number}
           },
-          // {
-          //   name:  "scala-compiler-doc",
-          //   system: "ivy",
-          //   set-version: ${vars.scala-compiler-doc.version.number}
-          //   uri:    "ivy:org.scala-lang.modules#scala-compiler-doc_"${vars.scala.binary.version}";"${vars.scala-compiler-doc.version.number}
-          // }, {
-          //   name:  "scala-compiler-interactive",
-          //   system: "ivy",
-          //   set-version: ${vars.scala-compiler-interactive.version.number}
-          //   uri:    "ivy:org.scala-lang.modules#scala-compiler-interactive_"${vars.scala.binary.version}";"${vars.scala-compiler-interactive.version.number}
-          // },
           {
             name:  "scala-xml",
             system: "ivy",
@@ -56,17 +49,19 @@
         ]
       },
       {
+        name: scalacheck
+        extra.sbt-version: "0.13.0",
+        uri: "https://github.com/rickynils/scalacheck.git#1.11.1"
+      },
+      {
         name:   "sbinary",
+        extra.sbt-version: "0.13.0",
         uri:    "git://github.com/harrah/sbinary.git#2.11"
-        extra: {
-          projects: ["core"],
-          run-tests: false // Sbinary has some invalid case classes currently.
-          sbt-version: "0.13.0"
-        }
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#0.13-2.11"
+        uri:    "git://github.com/sbt/sbt.git#0.13"
         extra: {
+          sbt-version: "0.13.0",
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
                      "process","relation","interface","persist","api",
@@ -79,10 +74,10 @@
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0-on-"${vars.maven.version.number}"-for-IDE-SNAPSHOT"
+        set-version: "0.13.0"${vars.sbt.branch.prefix}"-on-"${vars.maven.version.number}${vars.sbt.version.suffix}"-SNAPSHOT"
       }, {
         name:   "zinc",
-        uri:    "https://github.com/typesafehub/zinc.git#v0.3.0"
+        uri:    "https://github.com/typesafehub/zinc.git#"${vars.zinc.gitref}
       }
     ],
     options:{cross-version:standard},
@@ -115,3 +110,16 @@
     }
   }
 }
+
+
+// {
+//   name:  "scala-compiler-doc",
+//   system: "ivy",
+//   set-version: ${vars.scala-compiler-doc.version.number}
+//   uri:    "ivy:org.scala-lang.modules#scala-compiler-doc_"${vars.scala.binary.version}";"${vars.scala-compiler-doc.version.number}
+// }, {
+//   name:  "scala-compiler-interactive",
+//   system: "ivy",
+//   set-version: ${vars.scala-compiler-interactive.version.number}
+//   uri:    "ivy:org.scala-lang.modules#scala-compiler-interactive_"${vars.scala.binary.version}";"${vars.scala-compiler-interactive.version.number}
+// },
