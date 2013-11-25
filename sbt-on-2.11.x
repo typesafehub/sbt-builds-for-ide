@@ -74,7 +74,7 @@
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0"${vars.sbt.branch.prefix}"-on-"${vars.maven.version.number}${vars.sbt.version.suffix}"-SNAPSHOT"
+        set-version: "0.13.0"${vars.sbt.branch.prefix}"-on-"${vars.maven.version.number}${vars.sbt.version.suffix} //"-SNAPSHOT"
       }, {
         name:   "zinc",
         uri:    "https://github.com/typesafehub/zinc.git#"${vars.zinc.gitref}
