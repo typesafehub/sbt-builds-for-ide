@@ -59,9 +59,9 @@
         uri:    "git://github.com/harrah/sbinary.git#2.11"
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#0.13"
+        uri:    "git://github.com/sbt/sbt.git#0.13-2.11"
         extra: {
-          sbt-version: "0.13.0",
+          sbt-version: "0.12.4",
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
                      "process","relation","interface","persist","api",
