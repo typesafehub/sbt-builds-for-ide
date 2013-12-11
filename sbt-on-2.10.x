@@ -38,8 +38,9 @@
         extra: { projects: ["core"] }
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#v0.13.0"
+        uri:    "git://github.com/sbt/sbt.git#v0.13.1"
         extra: {
+          sbt-version: "0.13.0"
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
                      "process","relation","interface","persist","api",
@@ -50,7 +51,7 @@
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0-on-"${vars.scala-version}"-for-IDE-SNAPSHOT"
+        set-version: "0.13.1-on-"${vars.scala-version}"-for-IDE-SNAPSHOT"
       }, {
         name:   "zinc",
         uri:    "https://github.com/typesafehub/zinc.git#v0.3.0"
