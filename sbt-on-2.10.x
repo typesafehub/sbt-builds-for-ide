@@ -29,6 +29,11 @@
         uri:    "ivy:org.scala-lang#scala-reflect;"${vars.scala-version}
         set-version: ${vars.scala-version}
       }, {
+        name:  "specs",
+        system: "ivy",
+        uri:    "ivy:org.specs2#specs2_2.10;1.12.3"
+        set-version: "1.12.3"
+      }, {
         name:   "scalacheck",
         system: "ivy",
         uri:    "ivy:org.scalacheck#scalacheck_2.10;1.10.1"
