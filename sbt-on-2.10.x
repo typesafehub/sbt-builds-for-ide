@@ -43,15 +43,14 @@
         extra: { projects: ["core"] }
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#v0.13.2-M1"
+        uri:    "git://github.com/sbt/sbt.git#v0.13.0"
         extra: {
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
                      "process","relation","interface","persist","api",
                      "compiler-integration","incremental-compiler","compile","launcher-interface"
                     ],
-          run-tests: false,
-          sbt-version: "0.13.0"
+          run-tests: false
         }
       }, {
         name:   "sbt-republish",
