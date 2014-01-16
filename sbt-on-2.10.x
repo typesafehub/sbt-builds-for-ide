@@ -1,3 +1,6 @@
+# Warning: THIS FILE IS USED IN PR VALIDATION. DO NOT MODIFY WITHOUT
+#          NOTIFYING SCALA, SCALA-IDE TEAMS
+#  Nightly job: https://jenkins-dbuild.typesafe.com:8499/job/sbt-nightly-for-ide-on-scala-2.10.x/
 {
   // Variables that may be external.  We have the defaults here.
   vars: {
@@ -43,20 +46,19 @@
         extra: { projects: ["core"] }
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#v0.13.2-M1"
+        uri:    "git://github.com/sbt/sbt.git#v0.13.0"
         extra: {
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
                      "process","relation","interface","persist","api",
                      "compiler-integration","incremental-compiler","compile","launcher-interface"
                     ],
-          run-tests: false,
-          sbt-version: "0.13.0"
+          run-tests: false
         }
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.2-M1-on-"${vars.scala-version}"-for-IDE-SNAPSHOT"
+        set-version: "0.13.0-on-"${vars.scala-version}"-for-IDE-SNAPSHOT"
       }, {
         name:   "zinc",
         uri:    "https://github.com/typesafehub/zinc.git#v0.3.0"

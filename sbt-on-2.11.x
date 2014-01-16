@@ -1,3 +1,6 @@
+# Warning: THIS FILE IS USED IN PR VALIDATION. DO NOT MODIFY WITHOUT
+#          NOTIFYING SCALA, SCALA-IDE TEAMS
+# Nightly job: https://jenkins-dbuild.typesafe.com:8499/job/sbt-nightly-for-ide-on-scala-2.11.x/
 {
   properties: "file://"${PWD}"/versions.properties"
   // Variables that may be external.  We have the defaults here.
