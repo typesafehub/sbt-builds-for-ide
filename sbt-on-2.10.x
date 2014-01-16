@@ -56,7 +56,7 @@
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.2-M1-on-"${vars.scala-version}"-for-IDE-SNAPSHOT"
+        set-version: "0.13.0-on-"${vars.scala-version}"-for-IDE-SNAPSHOT"
       }, {
         name:   "zinc",
         uri:    "https://github.com/typesafehub/zinc.git#v0.3.0"
