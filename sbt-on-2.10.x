@@ -1,3 +1,5 @@
+# Warning: THIS FILE IS USED IN PR VALIDATION. DO NOT MODIFY WITHOUT
+#          NOTIFYING SCALA, SCALA-IDE TEAMS
 {
   // Variables that may be external.  We have the defaults here.
   vars: {
