@@ -1,6 +1,6 @@
-# Warning: THIS FILE IS USED IN PR VALIDATION. DO NOT MODIFY WITHOUT
-#          NOTIFYING SCALA, SCALA-IDE TEAMS
-#  Nightly job: https://jenkins-dbuild.typesafe.com:8499/job/sbt-nightly-for-ide-on-scala-2.10.x/
+# Warning: THIS FILE IS BEING USED FOR INTEGRATION WITH THE SCALA-IDE TEAM
+#          Pleases do not modify without contacting them.
+# Nighlty job: https://jenkins-dbuild.typesafe.com:8499/job/sbt-0.13.x-nightly-for-ide-on-scala-2.10.x
 {
   // Variables that may be external.  We have the defaults here.
   vars: {
@@ -8,6 +8,10 @@
     scala-version: ${?SCALA_VERSION}
     publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.10"
     publish-repo: ${?PUBLISH_REPO}
+    sbt-version: "0.13.2-M1"
+    sbt-version: ${?SBT_VERSION}
+    sbt-tag: "v"${vars.sbt-version}
+    sbt-tag: ${?SBT_TAG}
   }
   build: {
     "projects":[
@@ -32,11 +36,6 @@
         uri:    "ivy:org.scala-lang#scala-reflect;"${vars.scala-version}
         set-version: ${vars.scala-version}
       }, {
-        name:  "specs",
-        system: "ivy",
-        uri:    "ivy:org.specs2#specs2_2.10;1.12.3"
-        set-version: "1.12.3"
-      }, {
         name:   "scalacheck",
         system: "ivy",
         uri:    "ivy:org.scalacheck#scalacheck_2.10;1.10.1"
@@ -46,22 +45,23 @@
         extra: { projects: ["core"] }
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#v0.13.0"
+        uri:    "git://github.com/sbt/sbt.git#"${vars.sbt-tag}
         extra: {
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
                      "process","relation","interface","persist","api",
                      "compiler-integration","incremental-compiler","compile","launcher-interface"
                     ],
-          run-tests: false
+          run-tests: false,
+          sbt-version: "0.13.1"
         }
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0-on-"${vars.scala-version}"-for-IDE-SNAPSHOT"
+        set-version: ${vars.sbt-version}"-on-"${vars.scala-version}"-for-IDE-SNAPSHOT"
       }, {
         name:   "zinc",
-        uri:    "https://github.com/typesafehub/zinc.git#v0.3.0"
+        uri:    "https://github.com/typesafehub/zinc.git#master"
       }
     ],
     options:{cross-version:standard},
