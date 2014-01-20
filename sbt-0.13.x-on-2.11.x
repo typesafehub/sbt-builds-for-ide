@@ -7,7 +7,7 @@
   vars: {
     scala-version: "2.11.0-SNAPSHOT"
     scala-version: ${?SCALA_VERSION}
-    publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.10"
+    publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.11"
     publish-repo: ${?PUBLISH_REPO}
     sbt-version: "0.13.2-M1"
     sbt-version: ${?SBT_VERSION}
