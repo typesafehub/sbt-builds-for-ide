@@ -42,24 +42,24 @@
             name:  "scala-xml",
             system: "ivy",
             uri:    "ivy:org.scala-lang.modules#scala-xml_"${vars.scala.binary.version}";"${vars.scala-xml.version.number}
-            set-version: "1.0-RC3" // required by sbinary?
+            set-version: "1.0.0-RC7" // required by sbinary?
           }, {
             name:  "scala-parser-combinators",
             system: "ivy",
             uri:    "ivy:org.scala-lang.modules#scala-parser-combinators_"${vars.scala.binary.version}";"${vars.scala-parser-combinators.version.number},
-            set-version: "1.0-RC1" // required by sbinary?
+            set-version: "1.0.0-RC5" // required by sbinary?
           }
         ]
       },
       {
         name: scalacheck
         extra.sbt-version: "0.13.0",
-        uri: "https://github.com/rickynils/scalacheck.git#1.11.1"
+        uri: "https://github.com/rickynils/scalacheck.git#1.11.3"
       },
       {
         name:   "sbinary",
         extra.sbt-version: "0.13.0",
-        uri:    "git://github.com/harrah/sbinary.git#2.11"
+        uri:    "git://github.com/harrah/sbinary.git#master"
       }, {
         name:   "sbt",
         uri:    "git://github.com/sbt/sbt.git#0.13-2.11"
@@ -77,10 +77,7 @@
       }, {
         name:   "sbt-republish",
         uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0"${vars.sbt.branch.prefix}"-on-"${vars.maven.version.number}${vars.sbt.version.suffix}"-SNAPSHOT"
-      }, {
-        name:   "zinc",
-        uri:    "https://github.com/typesafehub/zinc.git#"${vars.zinc.gitref}
+        set-version: "0.13.0"${vars.sbt.branch.prefix}"-on-"${vars.maven.version.number}${vars.sbt.version.suffix}
       }
     ],
     options:{cross-version:standard},
