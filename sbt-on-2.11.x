@@ -1,15 +1,42 @@
 # Warning: THIS FILE IS USED IN PR VALIDATION. DO NOT MODIFY WITHOUT
 #          NOTIFYING SCALA, SCALA-IDE TEAMS
-# Nightly job: https://jenkins-dbuild.typesafe.com:8499/job/sbt-nightly-for-ide-on-scala-2.11.x/
+#  Default Nightly job: https://jenkins-dbuild.typesafe.com:8499/job/sbt-nightly-for-ide-on-scala-2.11.x/
+# - If you need a different branch ping qbranch@typesafe.com
+# - If you need to modify the version number string ping ????
+
+
+# This file knows how to build sbt inside Ivy and publish *maven nightly artifacts* for consumption.
+# Combined, we run tests to ensure that sanity exists for these artifacts (specifically, does Zinc build/run).
+# This build is *tied* to the 2.11.x scala series.  Scala's modularization requires different build files for
+# both 2.10.x and 2.11.x series.  The main difference is in how modules are grabbed.
+# The four projects that are sbt related are:
+#
+# - harrah/sbinary     * Dependency required for building sbt/sbt
+# - sbt/sbt            * Build/Test/Deploys via Ivy
+# - sbt/sbt-republish  * Actually releases maven artifacts
+# - typesafehub/zinc   * for testing only
+
+
+# If you'd like to create a "branch release" of this build, here's what you need to do:
+# - Copy the sbt-on-2.11.x.properties file to a new name.
+# - Override the variables in there for your purposes.
+# - Create a new jenkins job where the environment variable SBT_TAG_PROPS points at your properties file.
+# - Test locally with the command `SBT_VERSION_PROPERTIES_FILE=file:my.properties ./bin/dbuild sbt-on-2.11.x`
 {
-  properties: "file://"${PWD}"/versions.properties"
+  properties: [
+    "file:versions.properties"
+    ${?SBT_VERSION_PROPERTIES_FILE}  # If a properties environment vairable exists, we load it
+    "file:sbt-on-2.11.x.properties"
+  ]
   // Variables that may be external.  We have the defaults here.
   vars: {
-    publish-repo: "http://private-repo.typesafe.com/typesafe/ide-2.11"
+    scala_branch: "2.11"
+    scala_branch: ${?SCALA_BRANCH}
+    scala-version: ${?SCALA_VERSION}
     publish-repo: ${?PUBLISH_REPO}
-    sbt.version.suffix: "-for-IDE"
-    sbt.branch.prefix: ""
-    zinc.gitref: "v0.3.0"
+    sbt-version: ${?SBT_VERSION}
+    sbt-tag: ${?SBT_TAG}
+    sbt.snapshot.suffix: ${?SBT_SNAPSHOT_SUFFIX}
   }
   build: {
     "projects":[
@@ -42,29 +69,29 @@
             name:  "scala-xml",
             system: "ivy",
             uri:    "ivy:org.scala-lang.modules#scala-xml_"${vars.scala.binary.version}";"${vars.scala-xml.version.number}
-            set-version: "1.0-RC3" // required by sbinary?
+            set-version: ${vars.scala-xml.version.number}// required by sbinary?
           }, {
             name:  "scala-parser-combinators",
             system: "ivy",
             uri:    "ivy:org.scala-lang.modules#scala-parser-combinators_"${vars.scala.binary.version}";"${vars.scala-parser-combinators.version.number},
-            set-version: "1.0-RC1" // required by sbinary?
+            set-version: ${vars.scala-parser-combinators.version.number} // required by sbinary?
           }
         ]
       },
       {
         name: scalacheck
         extra.sbt-version: "0.13.0",
-        uri: "https://github.com/rickynils/scalacheck.git#1.11.1"
+        uri: "https://github.com/rickynils/scalacheck.git#1.11.3"
       },
       {
         name:   "sbinary",
         extra.sbt-version: "0.13.0",
-        uri:    "git://github.com/harrah/sbinary.git#2.11"
+        uri:    "git://github.com/harrah/sbinary.git#"${vars.sbinary-tag}
       }, {
         name:   "sbt",
-        uri:    "git://github.com/sbt/sbt.git#0.13-2.11"
+        uri:    "git://github.com/sbt/sbt.git#"${vars.sbt-tag}
         extra: {
-          sbt-version: "0.12.4",
+          sbt-version: ${vars.sbt-build-sbt-version},
           projects: ["compiler-interface",
                      "classpath","logging","io","control","classfile",
                      "process","relation","interface","persist","api",
@@ -76,11 +103,11 @@
         }
       }, {
         name:   "sbt-republish",
-        uri:    "http://github.com/typesafehub/sbt-republish.git#master",
-        set-version: "0.13.0"${vars.sbt.branch.prefix}"-on-"${vars.maven.version.number}${vars.sbt.version.suffix}"-SNAPSHOT"
+        uri:    "http://github.com/typesafehub/sbt-republish.git#"${vars.sbt-republish-tag},
+        set-version: ${vars.sbt-version}"-on-"${vars.maven.version.number}${vars.sbt.version.suffix}${vars.sbt.snapshot.suffix}
       }, {
         name:   "zinc",
-        uri:    "https://github.com/typesafehub/zinc.git#"${vars.zinc.gitref}
+        uri:    "https://github.com/typesafehub/zinc.git#"${vars.zinc-tag}
       }
     ],
     options:{cross-version:standard},
