@@ -24,12 +24,14 @@
 # - Test locally with the command `SBT_VERSION_PROPERTIES_FILE=file:my.properties ./bin/dbuild sbt-on-2.11.x`
 {
   properties: [
-    "file://"${PWD}"/versions.properties"
+    "file:versions.properties"
     ${?SBT_VERSION_PROPERTIES_FILE}  # If a properties environment vairable exists, we load it
     "file:sbt-on-2.11.x.properties"
   ]
   // Variables that may be external.  We have the defaults here.
   vars: {
+    scala_branch: "2.11"
+    scala_branch: ${?SCALA_BRANCH}
     scala-version: ${?SCALA_VERSION}
     publish-repo: ${?PUBLISH_REPO}
     sbt-version: ${?SBT_VERSION}
@@ -79,7 +81,7 @@
       {
         name: scalacheck
         extra.sbt-version: "0.13.0",
-        uri: "https://github.com/rickynils/scalacheck.git#1.11.1"
+        uri: "https://github.com/rickynils/scalacheck.git#1.11.3"
       },
       {
         name:   "sbinary",
